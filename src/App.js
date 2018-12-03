@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
 import styled from 'styled-components';
-import TicketList from './TicketList';
-import Controls from './Controls';
+import TicketList from './components/TicketList/TicketList';
+import Controls from './components/Controls/Controls';
 
 const App = () => (
   <Main>
@@ -15,5 +15,5 @@ export default App;
 
 const Main = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 `;

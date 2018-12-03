@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import Ticket from './Ticket';
+import Ticket from '../Ticket/Ticket';
 
 class TicketList extends Component {
   state = {

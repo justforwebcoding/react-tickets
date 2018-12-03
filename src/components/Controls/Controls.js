@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Button from './Button';
-import Checkbox from './Checkbox';
+import Button from '../Button/Button';
+import Checkbox from '../Checkbox/Checkbox';
 
 class Controls extends Component {
   render() {
