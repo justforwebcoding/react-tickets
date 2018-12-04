@@ -56,6 +56,7 @@ export const TicketView = styled.div`
   width: 566px;
   height: 161px;
   background-color: #fff;
+  box-shadow: 0px 1px 4px 0px rgba(91, 137, 164, 0, 25);
 
   margin-bottom: 30px;
   border-radius: 10px;

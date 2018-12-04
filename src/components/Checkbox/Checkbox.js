@@ -4,8 +4,18 @@ import styled from 'styled-components';
 
 class Checkbox extends Component {
   render() {
-    return <input type="checkbox" />;
+    return (
+      <CheckboxView>
+        <label>
+          <input type="checkbox" />
+
+          Hello
+</label>
+      </CheckboxView>
+    );
   }
 }
 
 export default Checkbox;
+
+export const CheckboxView = styled.div``;
