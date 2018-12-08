@@ -1,29 +1,101 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { POINT_CONVERSION_COMPRESSED } from 'constants';
 import Button from '../Button/Button';
 import Checkbox from '../Checkbox/Checkbox';
 
 class Controls extends Component {
+  state = {
+    currency: ['RUB', 'USD', 'EUR'],
+    changedCurrency: 'RUB',
+    status: [true, false, false],
+    quantity: [
+      {
+        key: 0,
+        value: 'Все',
+      },
+      {
+        key: 1,
+        value: 'Без пересадок',
+      },
+      {
+        key: 2,
+        value: '1 пересадка',
+      },
+      {
+        key: 3,
+        value: '2 пересадки',
+      },
+      {
+        key: 4,
+        value: '3 пересадки',
+      },
+    ],
+    checkArray: [false, false, false, false, false],
+  };
+
+  checkItem = (data) => {
+    console.log(data);
+    const { checkArray } = this.state;
+    const { onFilter } = this.props;
+    const state = { ...this.state };
+    state.checkArray[data.key] = data.status;
+    console.log(state.checkArray);
+    this.setState(state, () => {
+      onFilter(checkArray);
+    });
+  };
+
+  changeCurrency = (status, value, id) => {
+    const { onChangeCurrency } = this.props;
+    const state = { ...this.state };
+    if (!status) {
+      state.status = state.status.map(item => (item = false));
+      state.status[id] = true;
+      state.changedCurrency = value;
+      this.setState(state, () => {
+        console.log(this.state.status);
+        onChangeCurrency(this.state.changedCurrency);
+      });
+    }
+  };
+
   render() {
+    const { currency, quantity, status } = this.state;
     return (
       <ControlsView>
         <Currency>
           <span>валюта</span>
           <Buttons>
-            <Button />
-            <Button />
-            <Button />
+            <Button
+              id={0}
+              status={status[0]}
+              onChange={this.changeCurrency}
+              value={currency[0]}
+            />
+            <Button
+              id={1}
+              status={status[1]}
+              onChange={this.changeCurrency}
+              value={currency[1]}
+            />
+            <Button
+              id={2}
+              status={status[2]}
+              onChange={this.changeCurrency}
+              value={currency[2]}
+            />
           </Buttons>
         </Currency>
         <Quantity>
           <span>количество пересадок</span>
           <Checkboxes>
-            <Checkbox />
-            <Checkbox />
-            <Checkbox />
-            <Checkbox />
-            <Checkbox />
+            <Checkbox addFilter={this.checkItem} info={quantity[0]} />
+            <Checkbox addFilter={this.checkItem} info={quantity[1]} />
+            <Checkbox addFilter={this.checkItem} info={quantity[2]} />
+            <Checkbox addFilter={this.checkItem} info={quantity[3]} />
+            <Checkbox addFilter={this.checkItem} info={quantity[4]} />
           </Checkboxes>
         </Quantity>
       </ControlsView>
@@ -82,6 +154,16 @@ export const Buttons = styled.div`
   button:nth-child(1),
   button:nth-child(2) {
     border-right: none;
+  }
+
+  button:nth-child(1):hover + button:nth-child(2),
+  button:nth-child(2):hover + button:nth-child(3) {
+    border-left: none;
+  }
+
+  button:nth-child(1):hover,
+  button:nth-child(2):hover {
+    border-right: 1px solid #64b5f5;
   }
 `;
 

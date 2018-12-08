@@ -15,14 +15,26 @@ const findTransfers = (count) => {
   return str;
 };
 
-const Ticket = ({ ticket }) => (
+const findCurr = (curr) => {
+  let str = '';
+  if (curr === 'RUB') {
+    str = '₽';
+  } else if (curr === 'USD') {
+    str = '$';
+  } else {
+    str = '€';
+  }
+  return str;
+};
+
+const Ticket = ({ ticket, curr }) => (
   <TicketView>
     <TicketLeftSide>
       <img src={logo} alt="airlines" />
       <button type="button">
         {'Купить'}
         <br />
-        {`за ${ticket.price}  Р`}
+        {`за ${ticket.price}  ${findCurr(curr)}`}
       </button>
     </TicketLeftSide>
     <Line />
@@ -99,6 +111,11 @@ export const TicketLeftSide = styled.div`
 
     font-size: 20px;
     border: none;
+  }
+
+  button:hover {
+    cursor: pointer;
+    background-color: #ff8124;
   }
 `;
 

@@ -3,14 +3,32 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 class Checkbox extends Component {
+  state = {
+    isCheked: false,
+  };
+
+  toggleChange = (e) => {
+    this.setState(
+      {
+        isCheked: !this.state.isCheked,
+      },
+      () => {
+        this.props.addFilter({
+          key: this.props.info.key,
+          status: this.state.isCheked,
+        });
+      },
+    );
+  };
+
   render() {
+    const { info } = this.props;
     return (
       <CheckboxView>
         <label>
-          <input type="checkbox" />
-
-          Hello
-</label>
+          <input onChange={this.toggleChange} type="checkbox" />
+          {info.value}
+        </label>
       </CheckboxView>
     );
   }
