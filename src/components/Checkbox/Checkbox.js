@@ -7,7 +7,7 @@ class Checkbox extends Component {
     isCheked: false,
   };
 
-  toggleChange = (e) => {
+  toggleChange = () => {
     this.setState(
       {
         isCheked: !this.state.isCheked,
@@ -35,5 +35,9 @@ class Checkbox extends Component {
 }
 
 export default Checkbox;
+
+Checkbox.propTypes = {
+  addFilter: PropTypes.func.isRequired,
+};
 
 export const CheckboxView = styled.div``;

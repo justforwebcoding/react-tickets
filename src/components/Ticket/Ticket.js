@@ -86,6 +86,7 @@ export default Ticket;
 
 Ticket.propTypes = {
   ticket: PropTypes.instanceOf(Object).isRequired,
+  curr: PropTypes.string.isRequired,
 };
 
 export const TicketView = styled.div`

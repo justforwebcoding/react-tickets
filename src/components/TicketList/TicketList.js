@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import Ticket from '../Ticket/Ticket';
 
 class TicketList extends Component {
@@ -14,17 +15,9 @@ class TicketList extends Component {
       this.setState({
         tickets: tickets.tickets,
       });
-      console.log(tickets.tickets);
     } catch (e) {
       console.log(e);
     }
-
-    // fetch('http://localhost:3000/tickets.json')
-    //   .then(response => response.json())
-    //   .then((data) => {
-    //     this.setState({ tickets: data.tickets });
-    //     console.log(data.tickets);
-    //   });
   }
 
   filterArrayByStops = (item) => {
@@ -62,6 +55,10 @@ class TicketList extends Component {
 }
 
 export default TicketList;
+
+TicketList.propTypes = {
+  currency: PropTypes.string.isRequired,
+};
 
 const ListView = styled.div`
   display: flex;

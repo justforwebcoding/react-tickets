@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { POINT_CONVERSION_COMPRESSED } from 'constants';
 import Button from '../Button/Button';
 import Checkbox from '../Checkbox/Checkbox';
 
@@ -36,12 +35,10 @@ class Controls extends Component {
   };
 
   checkItem = (data) => {
-    console.log(data);
     const { checkArray } = this.state;
     const { onFilter } = this.props;
     const state = { ...this.state };
     state.checkArray[data.key] = data.status;
-    console.log(state.checkArray);
     this.setState(state, () => {
       onFilter(checkArray);
     });
@@ -55,7 +52,6 @@ class Controls extends Component {
       state.status[id] = true;
       state.changedCurrency = value;
       this.setState(state, () => {
-        console.log(this.state.status);
         onChangeCurrency(this.state.changedCurrency);
       });
     }
@@ -104,6 +100,11 @@ class Controls extends Component {
 }
 
 export default Controls;
+
+Controls.propTypes = {
+  onFilter: PropTypes.func.isRequired,
+  onChangeCurrency: PropTypes.func.isRequired,
+};
 
 export const ControlsView = styled.div`
   width: 202px;

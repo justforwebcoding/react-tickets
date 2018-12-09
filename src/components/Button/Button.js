@@ -14,7 +14,6 @@ class Button extends Component {
   click = () => {
     const { isActive } = this.state;
     const { onChange, value, id } = this.props;
-    console.log(isActive);
     if (!isActive) {
       onChange(isActive, value, id);
     }
@@ -36,6 +35,12 @@ class Button extends Component {
 }
 
 export default Button;
+
+Button.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
+};
 
 export const ButtonView = styled.button`
   display: block;
