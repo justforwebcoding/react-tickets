@@ -27,6 +27,30 @@ const findCurr = (curr) => {
   return str;
 };
 
+const getDate = (data) => {
+  const str = data.split('.');
+  const date = new Date(+`20${str[2]}`, +str[1], +str[0]);
+  const day = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
+  const month = [
+    'янв',
+    'фев',
+    'мар',
+    'апр',
+    'май',
+    'июн',
+    'июль',
+    'авг',
+    'сен',
+    'окт',
+    'ноя',
+    'дек',
+  ];
+
+  return `${date.getDate()} ${month[date.getMonth()]} ${date.getFullYear()}, ${
+    day[date.getDay()]
+  } `;
+};
+
 const Ticket = ({ ticket, curr }) => (
   <TicketView>
     <TicketLeftSide>
@@ -43,7 +67,7 @@ const Ticket = ({ ticket, curr }) => (
         <Time>{ticket.departure_time}</Time>
         <Info>
           <span>{`${ticket.origin},${ticket.origin_name}`}</span>
-          <span>{ticket.departure_date}</span>
+          <span>{getDate(ticket.departure_date)}</span>
         </Info>
       </From>
       <Transfer>{findTransfers(ticket.stops)}</Transfer>
@@ -51,7 +75,7 @@ const Ticket = ({ ticket, curr }) => (
         <Time>{ticket.arrival_time}</Time>
         <Info>
           <span>{`${ticket.destination_name},${ticket.destination}`}</span>
-          <span>{ticket.arrival_date}</span>
+          <span>{getDate(ticket.arrival_date)}</span>
         </Info>
       </To>
     </TicketRightSide>
