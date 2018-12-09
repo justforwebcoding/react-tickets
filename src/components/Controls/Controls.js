@@ -47,10 +47,10 @@ class Controls extends Component {
     });
   };
 
-  changeCurrency = (status, value, id) => {
+  changeCurrency = (stat, value, id) => {
     const { onChangeCurrency } = this.props;
     const state = { ...this.state };
-    if (!status) {
+    if (!stat) {
       state.status = state.status.map(item => (item = false));
       state.status[id] = true;
       state.changedCurrency = value;

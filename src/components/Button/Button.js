@@ -7,10 +7,17 @@ class Button extends Component {
     isActive: !!this.props.status,
   };
 
+  componentWillReceiveProps = () => {
+    this.setState({ isActive: !!this.props.status });
+  };
+
   click = () => {
     const { isActive } = this.state;
     const { onChange, value, id } = this.props;
-    onChange(isActive, value, id);
+    console.log(isActive);
+    if (!isActive) {
+      onChange(isActive, value, id);
+    }
   };
 
   render() {
