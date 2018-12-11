@@ -87,11 +87,13 @@ class Controls extends Component {
         <Quantity>
           <span>количество пересадок</span>
           <Checkboxes>
-            <Checkbox addFilter={this.checkItem} info={quantity[0]} />
-            <Checkbox addFilter={this.checkItem} info={quantity[1]} />
-            <Checkbox addFilter={this.checkItem} info={quantity[2]} />
-            <Checkbox addFilter={this.checkItem} info={quantity[3]} />
-            <Checkbox addFilter={this.checkItem} info={quantity[4]} />
+            {quantity.map(quantityItem => (
+              <Checkbox
+                key={quantityItem.key}
+                addFilter={this.checkItem}
+                info={quantityItem}
+              />
+            ))}
           </Checkboxes>
         </Quantity>
       </ControlsView>
@@ -99,12 +101,11 @@ class Controls extends Component {
   }
 }
 
-export default Controls;
-
 Controls.propTypes = {
   onFilter: PropTypes.func.isRequired,
   onChangeCurrency: PropTypes.func.isRequired,
 };
+export default Controls;
 
 export const ControlsView = styled.div`
   width: 202px;

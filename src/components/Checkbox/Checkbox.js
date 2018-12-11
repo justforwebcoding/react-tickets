@@ -34,10 +34,10 @@ class Checkbox extends Component {
   }
 }
 
-export default Checkbox;
-
 Checkbox.propTypes = {
   addFilter: PropTypes.func.isRequired,
 };
+
+export default Checkbox;
 
 export const CheckboxView = styled.div``;

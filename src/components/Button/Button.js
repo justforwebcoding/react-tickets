@@ -3,44 +3,35 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 class Button extends Component {
-  state = {
-    isActive: !!this.props.status,
-  };
-
-  componentWillReceiveProps = () => {
-    this.setState({ isActive: !!this.props.status });
-  };
-
   click = () => {
-    const { isActive } = this.state;
-    const { onChange, value, id } = this.props;
+    const {
+ onChange, value, id, status 
+} = this.props;
+    const isActive = !!status;
     if (!isActive) {
       onChange(isActive, value, id);
     }
   };
 
   render() {
-    const { value } = this.props;
-    const { isActive } = this.state;
-    return (
-      <React.Fragment>
-        {isActive ? (
-          <ButtonViewActive onClick={this.click}>{value}</ButtonViewActive>
-        ) : (
-          <ButtonView onClick={this.click}>{value}</ButtonView>
-        )}
-      </React.Fragment>
-    );
+    const { value, status } = this.props;
+    const isActive = !!status;
+
+    if (isActive) {
+      return <ButtonViewActive onClick={this.click}>{value}</ButtonViewActive>;
+    }
+    return <ButtonView onClick={this.click}>{value}</ButtonView>;
   }
 }
-
-export default Button;
 
 Button.propTypes = {
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
+  status: PropTypes.bool.isRequired,
 };
+
+export default Button;
 
 export const ButtonView = styled.button`
   display: block;

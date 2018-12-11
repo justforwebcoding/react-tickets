@@ -82,12 +82,12 @@ const Ticket = ({ ticket, curr }) => (
   </TicketView>
 );
 
-export default Ticket;
-
 Ticket.propTypes = {
   ticket: PropTypes.instanceOf(Object).isRequired,
   curr: PropTypes.string.isRequired,
 };
+
+export default Ticket;
 
 export const TicketView = styled.div`
   width: 566px;

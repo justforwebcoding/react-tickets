@@ -54,11 +54,11 @@ class TicketList extends Component {
   }
 }
 
-export default TicketList;
-
 TicketList.propTypes = {
   currency: PropTypes.string.isRequired,
 };
+
+export default TicketList;
 
 const ListView = styled.div`
   display: flex;
